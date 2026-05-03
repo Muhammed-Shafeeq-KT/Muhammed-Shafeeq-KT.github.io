@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Muhammed Shafeeq — Healthcare Data Analyst</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=Epilogue:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink: #1a1814;
+      --ink-2: #4a4740;
+      --ink-3: #8a8780;
+      --paper: #f7f5f0;
+      --paper-2: #efede8;
+      --paper-3: #e5e2db;
+      --accent: #b85c38;
+      --accent-light: #f0e8e3;
+      --border: rgba(26,24,20,0.10);
+      --serif: 'Lora', Georgia, serif;
+      --sans: 'Epilogue', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-weight: 300;
+      font-size: 16px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: var(--paper);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 52px;
+    }
+    .nav-logo {
+      font-family: var(--serif);
+      font-size: 15px;
+      color: var(--ink);
+      text-decoration: none;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--ink-2);
+      text-decoration: none;
+      letter-spacing: 0.03em;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* LAYOUT */
+    main {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 120px 2rem 80px;
+    }
+
+    section { margin-bottom: 72px; }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* HERO */
+    .hero { padding-top: 20px; margin-bottom: 80px; }
+    .hero-name {
+      font-family: var(--serif);
+      font-size: clamp(36px, 6vw, 56px);
+      font-weight: 400;
+      line-height: 1.15;
+      margin-bottom: 12px;
+      opacity: 0;
+      animation: rise 0.7s ease forwards;
+    }
+    .hero-title {
+      font-size: 16px;
+      font-weight: 300;
+      color: var(--ink-2);
+      margin-bottom: 6px;
+      opacity: 0;
+      animation: rise 0.7s ease 0.12s forwards;
+    }
+    .hero-location {
+      font-size: 13px;
+      color: var(--ink-3);
+      margin-bottom: 28px;
+      opacity: 0;
+      animation: rise 0.7s ease 0.2s forwards;
+    }
+    .hero-links {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: rise 0.7s ease 0.3s forwards;
+    }
+    .hero-link {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--ink-2);
+      text-decoration: none;
+      border: 1px solid var(--border);
+      padding: 6px 14px;
+      border-radius: 2px;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+      background: var(--paper);
+    }
+    .hero-link:hover {
+      background: var(--ink);
+      color: var(--paper);
+      border-color: var(--ink);
+    }
+    .hero-link.primary {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+    .hero-link.primary:hover { background: #9e4d2e; border-color: #9e4d2e; }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ABOUT */
+    .about-text {
+      font-size: 16px;
+      line-height: 1.8;
+      color: var(--ink-2);
+      max-width: 640px;
+    }
+    .about-text em {
+      font-family: var(--serif);
+      font-style: italic;
+      color: var(--ink);
+    }
+
+    /* SKILLS */
+    .skills-grid { display: flex; flex-direction: column; gap: 14px; }
+    .skill-row { display: grid; grid-template-columns: 140px 1fr; gap: 16px; align-items: start; }
+    .skill-cat {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--ink-3);
+      letter-spacing: 0.03em;
+      padding-top: 4px;
+    }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .skill-tag {
+      font-size: 12px;
+      background: var(--paper-2);
+      border: 1px solid var(--paper-3);
+      padding: 3px 10px;
+      border-radius: 2px;
+      color: var(--ink-2);
+    }
+
+    /* PROJECTS */
+    .project-card {
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 1.5rem;
+      margin-bottom: 16px;
+      background: var(--paper);
+      transition: border-color 0.2s, box-shadow 0.2s;
+      position: relative;
+    }
+    .project-card:hover {
+      border-color: rgba(184,92,56,0.3);
+      box-shadow: 0 4px 24px rgba(26,24,20,0.06);
+    }
+    .project-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+    .project-title {
+      font-family: var(--serif);
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 1.3;
+    }
+    .project-link {
+      font-size: 12px;
+      color: var(--accent);
+      text-decoration: none;
+      white-space: nowrap;
+      padding-top: 4px;
+      flex-shrink: 0;
+      transition: opacity 0.2s;
+    }
+    .project-link:hover { opacity: 0.7; }
+    .project-tools {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-bottom: 12px;
+    }
+    .project-tool {
+      font-size: 11px;
+      font-weight: 500;
+      background: var(--accent-light);
+      color: var(--accent);
+      padding: 2px 8px;
+      border-radius: 2px;
+      letter-spacing: 0.03em;
+    }
+    .project-desc {
+      font-size: 14px;
+      color: var(--ink-2);
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+    .project-findings {
+      list-style: none;
+      padding: 0;
+      border-top: 1px solid var(--border);
+      padding-top: 12px;
+    }
+    .project-findings li {
+      font-size: 13px;
+      color: var(--ink-2);
+      padding: 4px 0 4px 16px;
+      position: relative;
+      line-height: 1.6;
+    }
+    .project-findings li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 11px;
+      top: 6px;
+    }
+
+    /* EXPERIENCE */
+    .exp-timeline { position: relative; padding-left: 20px; }
+    .exp-timeline::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 8px; bottom: 8px;
+      width: 1px;
+      background: var(--border);
+    }
+    .exp-item { position: relative; margin-bottom: 36px; }
+    .exp-item:last-child { margin-bottom: 0; }
+    .exp-dot {
+      position: absolute;
+      left: -24px;
+      top: 6px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--paper);
+      border: 1.5px solid var(--accent);
+    }
+    .exp-role {
+      font-family: var(--serif);
+      font-size: 17px;
+      font-weight: 400;
+      margin-bottom: 3px;
+    }
+    .exp-meta {
+      font-size: 13px;
+      color: var(--ink-3);
+      margin-bottom: 10px;
+    }
+    .exp-highlights { list-style: none; padding: 0; }
+    .exp-highlights li {
+      font-size: 14px;
+      color: var(--ink-2);
+      padding: 3px 0 3px 16px;
+      position: relative;
+      line-height: 1.6;
+    }
+    .exp-highlights li::before {
+      content: '·';
+      position: absolute;
+      left: 0;
+      color: var(--ink-3);
+      font-size: 18px;
+      line-height: 1.2;
+    }
+
+    /* CERTS + EDU */
+    .cert-list { display: flex; flex-direction: column; gap: 0; }
+    .cert-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .cert-item:first-child { border-top: 1px solid var(--border); }
+    .cert-name { font-size: 14px; font-weight: 400; margin-bottom: 2px; }
+    .cert-issuer { font-size: 12px; color: var(--ink-3); }
+    .cert-date { font-size: 12px; color: var(--ink-3); flex-shrink: 0; }
+
+    /* CONTACT */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+    }
+    .contact-card {
+      background: var(--paper-2);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 16px;
+    }
+    .contact-card-label { font-size: 11px; color: var(--ink-3); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 4px; }
+    .contact-card-value { font-size: 14px; color: var(--ink); text-decoration: none; }
+    a.contact-card-value:hover { color: var(--accent); }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem;
+      text-align: center;
+      font-size: 12px;
+      color: var(--ink-3);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 600px) {
+      nav { padding: 0 1rem; }
+      .nav-links { display: none; }
+      main { padding: 90px 1.25rem 60px; }
+      .skill-row { grid-template-columns: 1fr; gap: 6px; }
+      .project-header { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-logo" href="#">Muhammed Shafeeq</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="hero">
+      <h1 class="hero-name">Muhammed<br>Shafeeq</h1>
+      <p class="hero-title">Healthcare Data Analyst</p>
+      <p class="hero-location">Malappuram, Kerala, India</p>
+      <div class="hero-links">
+        <a class="hero-link primary" href="https://github.com/Muhammed-Shafeeq-KT" target="_blank">GitHub ↗</a>
+        <a class="hero-link" href="mailto:plrshafeeq@gmail.com">Email</a>
+        <a class="hero-link" href="tel:+918086953877">+91 80869 53877</a>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <p class="section-label">About</p>
+      <p class="about-text">
+        Data analyst with dual certifications from <em>Illinois Tech (US)</em> and <em>NSDC / Entri Elevate</em>, and 6+ years inside clinical environments — as a medical scribe, quality reviewer, and process trainer at OG Healthcare, Nuance, and Cognizant. That background means I do not just clean healthcare data; <em>I understand what it represents.</em> I build end-to-end analytics solutions using Python, Power BI, MySQL, and Excel, with strong domain knowledge in Epic, Allscripts, Cerner, and HIPAA compliance.
+      </p>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+      <p class="section-label">Skills</p>
+      <div class="skills-grid">
+        <div class="skill-row">
+          <span class="skill-cat">Programming</span>
+          <div class="skill-tags">
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">Pandas</span>
+            <span class="skill-tag">NumPy</span>
+            <span class="skill-tag">Matplotlib</span>
+            <span class="skill-tag">Seaborn</span>
+            <span class="skill-tag">Beautiful Soup</span>
+            <span class="skill-tag">SQL</span>
+          </div>
+        </div>
+        <div class="skill-row">
+          <span class="skill-cat">BI &amp; Analytics</span>
+          <div class="skill-tags">
+            <span class="skill-tag">Power BI</span>
+            <span class="skill-tag">Tableau</span>
+            <span class="skill-tag">Excel (Advanced)</span>
+            <span class="skill-tag">MySQL</span>
+          </div>
+        </div>
+        <div class="skill-row">
+          <span class="skill-cat">Data Skills</span>
+          <div class="skill-tags">
+            <span class="skill-tag">EDA</span>
+            <span class="skill-tag">Data Cleaning</span>
+            <span class="skill-tag">Dashboard Development</span>
+            <span class="skill-tag">KPI Tracking</span>
+            <span class="skill-tag">Reporting</span>
+          </div>
+        </div>
+        <div class="skill-row">
+          <span class="skill-cat">Domain</span>
+          <div class="skill-tags">
+            <span class="skill-tag">EHR Systems</span>
+            <span class="skill-tag">Epic</span>
+            <span class="skill-tag">Allscripts</span>
+            <span class="skill-tag">Cerner</span>
+            <span class="skill-tag">HIPAA Compliance</span>
+            <span class="skill-tag">Medical Terminology</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+      <p class="section-label">Projects</p>
+
+      <div class="project-card">
+        <div class="project-header">
+          <h3 class="project-title">NHS Emergency Readmissions Dashboard</h3>
+          <a class="project-link" href="https://github.com/Muhammed-Shafeeq-KT" target="_blank">View on GitHub ↗</a>
+        </div>
+        <div class="project-tools">
+          <span class="project-tool">Python</span>
+          <span class="project-tool">Pandas</span>
+          <span class="project-tool">NumPy</span>
+          <span class="project-tool">Seaborn</span>
+          <span class="project-tool">Matplotlib</span>
+          <span class="project-tool">Power BI</span>
+        </div>
+        <p class="project-desc">End-to-end analytics solution on NHS England 30-day emergency readmissions data (2013–2024). Full pipeline from raw data cleaning to a stakeholder-ready Power BI dashboard.</p>
+        <ul class="project-findings">
+          <li>Cleaned and transformed multi-year NHS dataset; built 15+ EDA visualizations across age groups, deprivation levels, and performance metrics</li>
+          <li>Delivered a single-page Power BI dashboard with KPIs, trust rankings, and trend analysis over time</li>
+          <li>Key findings: patients aged 75+ are disproportionately vulnerable; COVID-era disruptions caused measurable drops in care continuity; significant regional disparities persist across NHS trusts</li>
+        </ul>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <h3 class="project-title">FIFA 21 Player Statistics Dashboard</h3>
+          <a class="project-link" href="https://github.com/Muhammed-Shafeeq-KT" target="_blank">View on GitHub ↗</a>
+        </div>
+        <div class="project-tools">
+          <span class="project-tool">Excel</span>
+          <span class="project-tool">Power BI</span>
+        </div>
+        <p class="project-desc">Interactive Power BI dashboard analyzing 18,000+ player records from the FIFA 21 dataset. Demonstrates BI storytelling with large structured datasets and dynamic filtering.</p>
+        <ul class="project-findings">
+          <li>Visualized pace, dribbling, and shooting metrics with dynamic slicers for club, country, and position</li>
+          <li>Identified midfielder skill variability patterns and youth potential hotspots across regions</li>
+          <li>Designed for non-technical audiences — clean layout with intuitive navigation</li>
+        </ul>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <h3 class="project-title">Fitness Membership Analytics — IronCore</h3>
+          <a class="project-link" href="https://github.com/Muhammed-Shafeeq-KT" target="_blank">View on GitHub ↗</a>
+        </div>
+        <div class="project-tools">
+          <span class="project-tool">Excel</span>
+        </div>
+        <p class="project-desc">End-to-end membership analytics for a fictional gym, applying business analytics techniques including RFM segmentation and cohort retention analysis.</p>
+        <ul class="project-findings">
+          <li>RFM segmentation to classify members into value tiers (champions, at-risk, lost)</li>
+          <li>Cohort analysis tracking retention rates across membership intake months</li>
+          <li>KPI dashboard covering revenue, churn rate, and engagement metrics</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience">
+      <p class="section-label">Experience</p>
+      <div class="exp-timeline">
+
+        <div class="exp-item">
+          <div class="exp-dot"></div>
+          <h3 class="exp-role">Quality Trainer / Process Specialist</h3>
+          <p class="exp-meta">Cognizant &nbsp;·&nbsp; Bengaluru, India &nbsp;·&nbsp; Jul 2023 – Nov 2024</p>
+          <ul class="exp-highlights">
+            <li>Tracked and analysed performance metrics across 50+ trainees, identifying skill gaps and adjusting training interventions — achieved 100% conversion to full-time roles</li>
+            <li>Developed quality documentation and process standards that reduced onboarding ramp-up time</li>
+            <li>Onboarded 10+ clients by evaluating project requirements and aligning vendor transitions to performance benchmarks</li>
+          </ul>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-dot"></div>
+          <h3 class="exp-role">Quality Documentation Specialist — Special Teams</h3>
+          <p class="exp-meta">Nuance &nbsp;·&nbsp; Bengaluru, India &nbsp;·&nbsp; Jul 2021 – Jul 2023</p>
+          <ul class="exp-highlights">
+            <li>Reviewed and quality-assessed 20–50 medical transcripts daily using systematic error analysis</li>
+            <li>Promoted to quality department within 6 months based on consistent accuracy and pattern recognition in documentation errors</li>
+            <li>Contributed to accuracy improvement initiatives by flagging recurring documentation issues for process correction</li>
+          </ul>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-dot"></div>
+          <h3 class="exp-role">Medical Scribe</h3>
+          <p class="exp-meta">OG Healthcare &nbsp;·&nbsp; Bengaluru, India &nbsp;·&nbsp; Feb 2018 – Jul 2021</p>
+          <ul class="exp-highlights">
+            <li>Documented 10–20 clinical encounters per shift across 5 physicians using Epic, Allscripts, and Cerner</li>
+            <li>Maintained zero HIPAA violations over 3+ years — rigorous data governance in live clinical environments</li>
+            <li>Managed high-volume, multi-source structured patient data with strict accuracy protocols</li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CERTIFICATIONS -->
+    <section id="certifications">
+      <p class="section-label">Certifications</p>
+      <div class="cert-list">
+        <div class="cert-item">
+          <div>
+            <p class="cert-name">Certification in Data Analytics</p>
+            <p class="cert-issuer">Illinois Tech, United States</p>
+          </div>
+          <span class="cert-date">Nov 2025</span>
+        </div>
+        <div class="cert-item">
+          <div>
+            <p class="cert-name">Data Analytics Certification</p>
+            <p class="cert-issuer">NSDC / Entri Elevate</p>
+          </div>
+          <span class="cert-date">Oct 2025</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section id="education">
+      <p class="section-label">Education</p>
+      <div class="cert-list">
+        <div class="cert-item">
+          <div>
+            <p class="cert-name">Bachelor of Science in Computer Science</p>
+            <p class="cert-issuer">Calicut University, Kerala, India</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <p class="section-label">Contact</p>
+      <div class="contact-grid">
+        <div class="contact-card">
+          <p class="contact-card-label">Email</p>
+          <a class="contact-card-value" href="mailto:plrshafeeq@gmail.com">plrshafeeq@gmail.com</a>
+        </div>
+        <div class="contact-card">
+          <p class="contact-card-label">Phone</p>
+          <a class="contact-card-value" href="tel:+918086953877">+91 80869 53877</a>
+        </div>
+        <div class="contact-card">
+          <p class="contact-card-label">GitHub</p>
+          <a class="contact-card-value" href="https://github.com/Muhammed-Shafeeq-KT" target="_blank">Muhammed-Shafeeq-KT</a>
+        </div>
+        <div class="contact-card">
+          <p class="contact-card-label">Location</p>
+          <span class="contact-card-value">Malappuram, Kerala, India</span>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>Muhammed Shafeeq &nbsp;·&nbsp; Healthcare Data Analyst &nbsp;·&nbsp; 2025</p>
+  </footer>
+
+</body>
+</html>
